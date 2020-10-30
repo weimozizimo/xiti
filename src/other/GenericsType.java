@@ -1,7 +1,8 @@
+package other;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Map;
 
 public class GenericsType {
     private Box<Number> box;
