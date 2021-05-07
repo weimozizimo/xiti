@@ -3,7 +3,8 @@ package solution.solution1;
 import java.util.Arrays;
 
 /**
-*@description 解决方案2
+ *
+*@description 解决方案2，此处和方案一的不同指出在于判断进行判断的时候使用二分法，降低了时间复杂度
 *@author weiyifei
 *@date 2021/4/29
 */
