@@ -49,30 +49,34 @@ class Node{
     public int add(int num){
 
         if(num==val){val = num;
-            this.deep = 1;
-            return 1;
+            this.deep = deep+1;
+            return this.deep;
         }
         else if(num<val){
+            int dp = 0;
             if(left==null){
                 left = new Node(num);
-                return 1;
+                dp = left.deep+1;
+            }else {
+                dp = left.add(num)+1;
             }
-            int dp = left.add(num);
-            if(dp+1>deep){
-                this.deep = dp+1;
+            if(dp>deep){
+                this.deep = dp;
             }
-            return dp+1;
+            return dp;
         }
         else{
+            int dp = 0;
             if(right==null){
                 right = new Node(num);
-                return 1;
+                dp = right.deep+1;
+            }else {
+                dp = right.add(num)+1;
             }
-            int dp = right.add(num);
-            if(dp+1>deep){
-                this.deep = dp+1;
+            if(dp>deep){
+                this.deep = dp;
             }
-            return dp+1;
+            return dp;
         }
     }
 
