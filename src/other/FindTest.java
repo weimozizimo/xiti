@@ -8,6 +8,7 @@ import cn.hutool.core.util.StrUtil;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,15 +21,34 @@ import java.util.stream.Collectors;
 
 public class FindTest {
 
-    private static final int _1MB = 1024*1024;
+
 
     public static void main(String[] args) {
-        byte[] allocation1,allocation2,allocation3,acllocation4,allocation5;
+        List<Integer> list = Collections.synchronizedList(new ArrayList<Integer>());
+//        List<Integer> list = new ArrayList<>();
 
-        allocation1 = new byte[12* _1MB];
-//        allocation2 = new byte[2* _1MB];
-//        allocation3 = new byte[2* _1MB];
-//        acllocation4 = new byte[1* _1MB];
-//        allocation5 = new byte[1*_1MB];
+        AtomicInteger count = new AtomicInteger(0);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0 ; i < 50 ; i++){
+                    list.add(count.getAndIncrement());
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0 ; i < 50 ; i++){
+                    list.add(count.getAndIncrement());
+                }
+            }
+        }).start();
+        System.out.println(list.size());
+        list.forEach(System.out::println);
     }
+
+
 }
