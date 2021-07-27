@@ -8,7 +8,7 @@ package datastructure;
 public class BalanceBinaryTree {
 
     //根节点
-    private Node root;
+    Node root;
 
     public BalanceBinaryTree() {
     }
@@ -48,12 +48,13 @@ class Node{
 
     public int add(int num){
 
+        int dp = 0 ;
+
         if(num==val){val = num;
             this.deep = deep+1;
             return this.deep;
         }
         else if(num<val){
-            int dp = 0;
             if(left==null){
                 left = new Node(num);
                 dp = left.deep+1;
@@ -66,7 +67,6 @@ class Node{
             return dp;
         }
         else{
-            int dp = 0;
             if(right==null){
                 right = new Node(num);
                 dp = right.deep+1;
@@ -81,6 +81,17 @@ class Node{
     }
 
 
+    public Node lSpin(){
+        if(right!=null){
+            Node re = right;
+            Node tmp = right.left;
+            right.left = this;
+            this.right = tmp;
+            return re;
+        }else {
+            return this;
+        }
+    }
 
 
 }
