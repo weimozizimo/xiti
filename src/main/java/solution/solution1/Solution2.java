@@ -1,7 +1,5 @@
 package solution.solution1;
 
-import org.apache.regexp.RE;
-
 import java.util.Arrays;
 
 /**
