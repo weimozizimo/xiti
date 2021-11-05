@@ -1,7 +1,5 @@
 package other;
 
-import com.sun.xml.internal.ws.api.client.WSPortInfo;
-import org.omg.CORBA.INTERNAL;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
