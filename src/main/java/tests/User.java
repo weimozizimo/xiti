@@ -9,11 +9,11 @@ public class User {
 
     private String email;
 
-    public String getUsername() {
+    public String getUsername2() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername2(String username) {
         this.username = username;
     }
 

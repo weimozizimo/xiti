@@ -1,26 +1,34 @@
 package tests;
 
-import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
+import cn.hutool.core.map.MapUtil;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.lang3.StringUtils;
+import com.fasterxml.jackson.core.util.JacksonFeatureSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import other.Men;
+import org.springframework.boot.json.JacksonJsonParser;
 import tests.exception.RpcException;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Test1 {
 
     private final static Logger log = LoggerFactory.getLogger(Test1.class);
 
     public static void main(String[] args) throws RpcException {
-        List<String> strings = Arrays.asList("123", "123", "222", "333");
-        int size = strings.stream().distinct().collect(Collectors.toList()).size();
-        System.out.println(size);
+        //fastJson
+        User user = new User();
+        user.setUsername2("username");
+        user.setEmail("email");
+        user.setSex("男");
+
+        String s = JSONObject.toJSONString(user);
+        System.out.println(s);
+
+
+
+
     }
 }
