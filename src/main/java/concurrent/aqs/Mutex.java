@@ -27,13 +27,17 @@ public class Mutex implements Lock {
             if(getState()==0) throw new IllegalMonitorStateException();
             setExclusiveOwnerThread(null);
             setState(0);
-            return true
+            return true;
         }
         //判断是否处于独占状态
         @Override
         protected boolean isHeldExclusively() {
             return getState() == 1;
         }
+
+        ///返回一个Condition，每个condition包含一个condition队列
+        Condition newCondition(){return new ConditionObject();}
+
     }
 
     //仅需要将操作代理到Sync上即可
@@ -45,26 +49,28 @@ public class Mutex implements Lock {
 
     @Override
     public void lockInterruptibly() throws InterruptedException {
-
+        sync.acquireInterruptibly(1);
     }
 
     @Override
     public boolean tryLock() {
-        return false;
+        return sync.tryAcquire(1);
     }
 
     @Override
     public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
-        return false;
+        return sync.tryAcquireNanos(1,unit.toNanos(time));
     }
 
     @Override
     public void unlock() {
-
+        sync.release(1);
     }
+    public boolean isLocked() {return sync.isHeldExclusively();}
+    public boolean hasQueuedThreads(){return sync.hasQueuedThreads();}
 
     @Override
     public Condition newCondition() {
-        return null;
+        return sync.newCondition();
     }
 }

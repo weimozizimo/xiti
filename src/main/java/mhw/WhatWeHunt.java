@@ -1,8 +1,10 @@
 package mhw;
 
-public class WhatWeHunt {
+import java.io.Serializable;
 
-    private Monster monster;
+public class WhatWeHunt implements Serializable {
+
+    public static Monster monster;
 
     private Arm arm;
 
@@ -18,6 +20,8 @@ public class WhatWeHunt {
     public void setMonster(Monster monster) {
         this.monster = monster;
     }
+
+    public int Add(int n1,int n2){return n1+n2;}
 
     public void getWhatWeHunt(int count) {
         for (int i = 0 ; i < count ; i++ ){
